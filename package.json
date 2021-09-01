@@ -1,0 +1,22 @@
+{
+  "name": "fetch-backend",
+  "version": "1.0.0",
+  "description": "backend exercise for Fetch Rewards",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alek2535/fetch-backend.git"
+  },
+  "author": "Alek Valencia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alek2535/fetch-backend/issues"
+  },
+  "homepage": "https://github.com/alek2535/fetch-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
