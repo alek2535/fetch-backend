@@ -1,6 +1,7 @@
 const Rewards = require('../models/Rewards');
 
-let db = [{ "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" }, { "payer": "UNILEVER", "points": 200, "timestamp": "2020-10-31T11:00:00Z" }, { "payer": "DANNON", "points": -200, "timestamp": "2020-10-31T15:00:00Z" }, { "payer": "MILLER COORS", "points": 10000, "timestamp": "2020-11-01T14:00:00Z" }, { "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" }];
+let db = [];
+// { "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" }, { "payer": "UNILEVER", "points": 200, "timestamp": "2020-10-31T11:00:00Z" }, { "payer": "DANNON", "points": -200, "timestamp": "2020-10-31T15:00:00Z" }, { "payer": "MILLER COORS", "points": 10000, "timestamp": "2020-11-01T14:00:00Z" }, { "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" }
 let usedDB = [];
 let finalDB = [];
 
@@ -9,7 +10,6 @@ const addReward = (payer, points) => {
     // console.log(newReward.getReward());
     db.push(newReward.getReward());
     return newReward.getReward();
-
 }
 
 const pointRemoval = (points) => {
@@ -84,7 +84,8 @@ const pointRemoval = (points) => {
         }
     })
 
-    console.log(mapArr, usedDB, checkMap, finalDB);
+    // console.log(mapArr, usedDB, checkMap, finalDB);
+    return finalDB;
 }
 
 const getRewards = () => {
@@ -101,9 +102,10 @@ const getRewards = () => {
     return newObj;
 
 }
-pointRemoval(5000);
+// pointRemoval(5000);
 
 module.exports = {
     addReward: addReward,
-    getRewards: getRewards
+    getRewards: getRewards,
+    pointRemoval: pointRemoval
 }
