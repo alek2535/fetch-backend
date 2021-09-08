@@ -162,6 +162,7 @@ const getRewards = () => {
     return finalObj;
 }
 
+// Exports an object with all of the above functions so they can be used in other places of the application.
 module.exports = {
     addReward: addReward,
     getRewards: getRewards,
