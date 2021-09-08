@@ -2,14 +2,28 @@ const express = require('express');
 const router = express.Router();
 const controllers = require('../controllers/rewardsCont');
 
-router.post('/reward', (req, res) => {
+router.post('/rewards-entry', (req, res) => {
+  const { payer, points } = req.body;
+
     try {
-      const pointObj = controllers.addReward(req.body.payer, req.body.points); 
+      const pointObj = controllers.addReward(payer, points); 
       res.status(200).json(pointObj) 
     } catch (err) {
         res.status(404).json(err.message)
     }
     
+});
+
+router.post('/rewards-removal', (req, res) => {
+  const { points } = req.body;
+
+  try {
+    const pointObj = controllers.pointRemoval(points); 
+    res.status(200).json(pointObj) 
+  } catch (err) {
+      res.status(404).json(err)
+  }
+  
 });
 
 router.get('/reward', (req, res) => {

@@ -1,15 +1,16 @@
 const Rewards = require('../models/Rewards');
 
-let db = [{ "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" }, { "payer": "UNILEVER", "points": 200, "timestamp": "2020-10-31T11:00:00Z" }, { "payer": "DANNON", "points": -200, "timestamp": "2020-10-31T15:00:00Z" }, { "payer": "MILLER COORS", "points": 10000, "timestamp": "2020-11-01T14:00:00Z" }, { "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" }];
+let db = [];
+// { "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" }, { "payer": "UNILEVER", "points": 200, "timestamp": "2020-10-31T11:00:00Z" }, { "payer": "DANNON", "points": -200, "timestamp": "2020-10-31T15:00:00Z" }, { "payer": "MILLER COORS", "points": 10000, "timestamp": "2020-11-01T14:00:00Z" }, { "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" }
 let usedDB = [];
 let finalDB = [];
+let pointsBalDB = [];
 
 const addReward = (payer, points) => {
     let newReward = new Rewards(payer, points);
     // console.log(newReward.getReward());
     db.push(newReward.getReward());
     return newReward.getReward();
-
 }
 
 const pointRemoval = (points) => {
@@ -57,18 +58,18 @@ const pointRemoval = (points) => {
     checkMap.forEach((value, key) => {
         let newObj = {};
         let startPoint = points - value;
-        console.log(startPoint);
+        // console.log(startPoint);
         let newValue = startPoint - points;
-        console.log(newValue);
+        // console.log(newValue);
         addedValues += value;
-        console.log(addedValues, '\n***BREAK***');
+        // console.log(addedValues, '\n***BREAK***');
 
         if (value > points) {
             addedValues = addedValues - value;
             startPoint = addedValues - points;
-            console.log(startPoint);
+            // console.log(startPoint);
             newValue = startPoint;
-            console.log(newValue);
+            // console.log(newValue);
 
             newObj.payer = key;
             newObj.points = newValue;
@@ -84,26 +85,46 @@ const pointRemoval = (points) => {
         }
     })
 
-    console.log(mapArr, usedDB, checkMap, finalDB);
+    // console.log(mapArr, usedDB, checkMap, finalDB);
+    return finalDB;
 }
 
 const getRewards = () => {
-    console.log(db);
-    let newObj = {};
-    db.forEach((reward) => {
-        if (newObj.hasPropertyOf(reward.payer)) {
-          newObj[reward.payer] = reward.points;  
-        } else {
-            newObj[reward.payer] = newObj.points + reward.points;
-        }
-        
-    });
-    return newObj;
+    // console.log(finalDB, "\n BREAK", usedDB, "\n BREAK", db);
+    const finalObj = {};
+    const checkMap = new Map();
 
+    for (let i = 0; i < db.length; i++) {
+        if (checkMap.has(db[i].payer)) {
+            checkMap.set(db[i].payer, checkMap.get(db[i].payer) + db[i].points);
+        } else {
+            checkMap.set(db[i].payer, db[i].points)
+        }
+        console.log(checkMap);
+    }
+
+    for (let i = 0; i < finalDB.length; i++) {
+        if (checkMap.has(finalDB[i].payer)) {
+            checkMap.set(finalDB[i].payer, checkMap.get(finalDB[i].payer) + finalDB[i].points);
+        } else {
+            checkMap.set(finalDB[i].payer, finalDB[i].points)
+        }
+        // console.log(checkMap);
+    }
+
+    checkMap.forEach((value, key) => {
+        finalObj[key] = value;
+        // console.log(finalObj);
+    });
+
+    return finalObj;
 }
-pointRemoval(5000);
+
+// pointRemoval(5000);
+// getRewards();
 
 module.exports = {
     addReward: addReward,
-    getRewards: getRewards
+    getRewards: getRewards,
+    pointRemoval: pointRemoval
 }
