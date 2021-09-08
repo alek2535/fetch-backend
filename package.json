@@ -4,7 +4,9 @@
   "description": "backend exercise for Fetch Rewards",
   "main": "server.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
   "repository": {
     "type": "git",
