@@ -43,7 +43,7 @@ router.post('/rewards-removal', (req, res) => {
   
 });
 
-router.get('/rewards', (req, res) => {
+router.get('/rewards-balance', (req, res) => {
     try {
       // Sets this variable to be the returned Object from the controller.
       const rewardsObj = controllers.getRewards(); 
