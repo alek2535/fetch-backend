@@ -70,11 +70,8 @@ To access this project:
 
 ```
 1. Go to https://github.com/alek2535/fetch-backend
-
 2. Fork the branch and then click on clone or download
-
 3. Paste copied link after `git clone` into your bash console in your desired directory
-
 4. You should now have access to the repository
 ```
 
@@ -154,12 +151,10 @@ Copyright (c) [2021] [Alek Valencia]
 This application has met all the minimum requirements. It can further be developed by:
 
   * Creating Tests
-
   * Checking for future bugs or use cases that could break any logic
-
   * Deleting rewards transactions
-
   * Editing already entered rewards transactions
+  * Continuing to refactor the code
 
 ## Tests
 
